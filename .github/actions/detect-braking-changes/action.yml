@@ -1,0 +1,16 @@
+name: 'Upload OpenAPI Spec'
+description: 'Uploads the openapi-spec.json file as an artifact'
+runs:
+  using: 'composite'
+  steps:
+    - name: Echo Message
+      run: echo "Upload the latest OpenAPI spec file on $(date)"
+
+    - name: Rename OpenAPI Spec File
+      run: mv ${{ github.workspace }}/pr-branch.openapi-spec.json ${{ github.workspace }}/openapi-spec.json
+    
+    - name: Upload OpenAPI Spec
+      uses: actions/upload-artifact@v4
+      with:
+        name: openapi-spec
+        path: ${{ github.workspace }}/openapi-spec.json
