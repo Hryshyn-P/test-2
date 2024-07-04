@@ -5,9 +5,11 @@ runs:
   steps:
     - name: Echo Message
       run: echo "Upload the latest OpenAPI spec file on $(date)"
+      shell: bash
 
     - name: Rename OpenAPI Spec File
       run: mv ${{ github.workspace }}/pr-branch.openapi-spec.json ${{ github.workspace }}/openapi-spec.json
+      shell: bash
     
     - name: Upload OpenAPI Spec
       uses: actions/upload-artifact@v4
